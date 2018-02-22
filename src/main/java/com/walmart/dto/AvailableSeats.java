@@ -2,13 +2,18 @@ package com.walmart.dto;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.NotNull;
+
 public class AvailableSeats {
 
+  @NotNull
   private String eventId;
+  @NotNull
   private String sectionId;
+  @NotNull
   private String rowId;
+  @NotNull
   private Integer seatNum;
-
 
   private String aisle;
   private String discountCode;
@@ -20,7 +25,7 @@ public class AvailableSeats {
   private String updateUser;
   private String updateDateTime;
   private String sellLocation;
-
+  @NotNull
   private String status; // A , I
 
   public AvailableSeats(

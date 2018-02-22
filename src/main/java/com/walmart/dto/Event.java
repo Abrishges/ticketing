@@ -1,8 +1,12 @@
 
 package com.walmart.dto;
 
+import javax.validation.constraints.NotNull;
+
 public class Event {
+  @NotNull
   private String eventId;
+  @NotNull
   private String eventName;
   private String seasonId;
   private String eventDate;
