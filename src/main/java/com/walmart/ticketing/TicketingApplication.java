@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.walmart.controller")
+@ComponentScan(basePackages = "com.walmart.*")
 @EnableSwagger2
 public class TicketingApplication {
 

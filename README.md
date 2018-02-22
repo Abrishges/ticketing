@@ -21,7 +21,7 @@ __contact__: Abereham.wodajie@gmail.com
 * URL
     * http://localhost:8080/swagger-ui.html#/
     
-* transaction urls, the last two are not fully implemented. 
+* ticketing service urls, the last two are not fully implemented. 
      * http://localhost:8080/swagger-ui.html#/
           
 * using curl to extract information
