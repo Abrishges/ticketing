@@ -25,10 +25,10 @@ public class AvailableSeatsServiceImpl implements AvailableSeatsService {
   @Override
   public List<AvailableSeats> findAllAvailableSeats() {
     final List<AvailableSeats> availableSeats = this.availableSeatsRepository.findAllAvailableSeats();
-    final List<AvailableSeats> bestAvailableSeats =
+    final List<AvailableSeats> currentAvailableSeats =
         availableSeats.stream().filter(seat -> !seat.getStatus().equals(SEAT_STATUS) && !seat.isReserved()).collect(
             Collectors.toList());
-    return bestAvailableSeats;
+    return currentAvailableSeats;
   }
 
   @Override

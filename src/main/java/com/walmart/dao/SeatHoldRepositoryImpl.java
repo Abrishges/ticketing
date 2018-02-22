@@ -12,6 +12,7 @@ import com.walmart.dto.SeatHold;
 public class SeatHoldRepositoryImpl implements SeatHoldRepository {
 
   final List<SeatHold> seatsHold = new ArrayList<>();
+  private final static String RESERVED = "Successfuly reserved!";
 
   @Override
   public SeatHold holdSeats(final SeatHold seatHold) {
@@ -29,7 +30,7 @@ public class SeatHoldRepositoryImpl implements SeatHoldRepository {
         seat.setReserved(true);
       }
     });
-    return "Successfuly reserved!";
+    return RESERVED;
   }
 
   @Override

@@ -1,10 +1,12 @@
 package com.walmart.dao;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.walmart.dto.AvailableSeats;
@@ -18,7 +20,13 @@ public class AvailableSeatsRepositoryImpl implements AvailableSeatsRepository {
   @Override
   public List<AvailableSeats> findAllAvailableSeats() {
     // retrieve data from the data base
-    return this.availableSeats;
+    List<AvailableSeats> currentlyAvailseats;
+    try {
+      currentlyAvailseats = this.availableSeats;
+    } catch (final EmptyResultDataAccessException ex) {
+      return Collections.emptyList();
+    }
+    return currentlyAvailseats;
   }
 
   @Override

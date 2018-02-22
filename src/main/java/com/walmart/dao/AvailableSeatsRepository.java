@@ -5,6 +5,7 @@ import java.util.List;
 import com.walmart.dto.AvailableSeats;
 
 public interface AvailableSeatsRepository {
+
   public List<AvailableSeats> findAllAvailableSeats();
 
   public void deleteAvailableSeats(String eventId, String sectionId, String rowId, String seatNum);

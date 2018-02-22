@@ -25,8 +25,12 @@ public class AvailableSeats {
   private String updateUser;
   private String updateDateTime;
   private String sellLocation;
+  private String priceCode;
+
+  // A , I (seller can also make seats active to sell or inactive not to sell
+  // specific seat for any reason )
   @NotNull
-  private String status; // A , I
+  private String status;
 
   public AvailableSeats(
       final String eventId,
@@ -143,6 +147,14 @@ public class AvailableSeats {
 
   public void setSellLocation(final String sellLocation) {
     this.sellLocation = sellLocation;
+  }
+
+  public String getPriceCode() {
+    return this.priceCode;
+  }
+
+  public void setPriceCode(final String priceCode) {
+    this.priceCode = priceCode;
   }
 
   public String getStatus() {

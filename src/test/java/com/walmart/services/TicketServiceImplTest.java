@@ -35,6 +35,8 @@ public class TicketServiceImplTest {
   private final static String ROW_ID = "H";
   private final static int SEAT_NUM = 21;
   private final static String STATUS = "A";
+  private final static int SEAT_HOLD_ID = 12345;
+  private final static String RESERVED = "Successfuly reserved!";
 
   private final static int NUMBER_OF_SEATS = 2;
   private final static String CUSTOMER_EMAIL = "Abereham.wodajie@gmail.com";
@@ -71,6 +73,14 @@ public class TicketServiceImplTest {
     assertEquals(seatHeld, seatHoldRespose);
     verify(this.availableSeatsService, times(1)).findBestAvailableSeats(NUMBER_OF_SEATS);
     verify(this.seatHoldService, times(1)).holdSeats(anyObject());
+  }
+
+  @Test
+  public void givenValidSeatHoldIdandCustomerEmail_WhenReserveSeatsCalled_ReturnSeatReserveSuccess() {
+    when(this.seatHoldService.reserveSeats(SEAT_HOLD_ID, CUSTOMER_EMAIL)).thenReturn(TicketServiceImplTest.RESERVED);
+    final String reserveRepose = this.ticketServiceImpl.reserveSeats(SEAT_HOLD_ID, CUSTOMER_EMAIL);
+    verify(this.seatHoldService, times(1)).reserveSeats(SEAT_HOLD_ID, CUSTOMER_EMAIL);
+    assertEquals(reserveRepose, RESERVED);
   }
 
   public List<AvailableSeats> getAvailableSeats() {
