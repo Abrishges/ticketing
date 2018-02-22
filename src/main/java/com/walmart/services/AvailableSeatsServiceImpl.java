@@ -15,6 +15,8 @@ public class AvailableSeatsServiceImpl implements AvailableSeatsService {
 
   private final AvailableSeatsRepository availableSeatsRepository;
 
+  public static final String SEAT_STATUS = "eventId";
+
   @Autowired
   public AvailableSeatsServiceImpl(final AvailableSeatsRepository availableSeatsRepository) {
     this.availableSeatsRepository = availableSeatsRepository;
@@ -24,7 +26,7 @@ public class AvailableSeatsServiceImpl implements AvailableSeatsService {
   public List<AvailableSeats> findAllAvailableSeats() {
     final List<AvailableSeats> availableSeats = this.availableSeatsRepository.findAllAvailableSeats();
     final List<AvailableSeats> bestAvailableSeats =
-        availableSeats.stream().filter(seat -> seat.getStatus().equals("I") && !seat.isReserved()).collect(
+        availableSeats.stream().filter(seat -> !seat.getStatus().equals(SEAT_STATUS) && !seat.isReserved()).collect(
             Collectors.toList());
     return bestAvailableSeats;
   }
@@ -36,16 +38,25 @@ public class AvailableSeatsServiceImpl implements AvailableSeatsService {
     /*
      *
      * - Price levels or range (
-     * - sections of the venue,
+     * - sections of the Venue,
      * - different ticket types
      * - Seats on promotions
      * - Best seats with low price
-     * - seats at the middle are best available seats
+     * - mostly seats at the middle with consumer specified range are best available seats
      */
-
-    final List<AvailableSeats> bestAvailableSeats = availableSeats;
+    // For this home work seats b/n seat number 20 to 40 are considered as best seats
+    final List<AvailableSeats> bestAvailableSeats = availableSeats
+        .stream()
+        .filter(seat -> seat.getSeatNum() >= 20 && seat.getSeatNum() <= 40)
+        .limit(numSeats)
+        .collect(Collectors.toList());
 
     return bestAvailableSeats;
+  }
+
+  @Override
+  public void seatHold(final List<AvailableSeats> bestAvailableSeats) {
+    this.availableSeatsRepository.seatHold(bestAvailableSeats);
   }
 
   @Override

@@ -1,14 +1,13 @@
 package com.walmart.dto;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class SeatHold {
-  private String seatHoldId;
+  private long seatHoldId;
   private List<AvailableSeats> availableSeats;
 
   // SeatHold
-  private LocalDateTime releaseDatetime; // feature release data time
+  private String releaseDatetime; // feature release data time
   private boolean reserved; // If true, no need to check the time
   private String promoCode;
 
@@ -16,14 +15,6 @@ public class SeatHold {
   private String customerEmail;
   private String orderNumber;
   private String dateTime;
-
-  public String getSeatHoldId() {
-    return this.seatHoldId;
-  }
-
-  public void setSeatHoldId(final String seatHoldId) {
-    this.seatHoldId = seatHoldId;
-  }
 
   public List<AvailableSeats> getAvailableSeats() {
     return this.availableSeats;
@@ -33,12 +24,20 @@ public class SeatHold {
     this.availableSeats = availableSeats;
   }
 
-  public LocalDateTime getReleaseDatetime() {
+  public String getReleaseDatetime() {
     return this.releaseDatetime;
   }
 
-  public void setReleaseDatetime(final LocalDateTime releaseDatetime) {
+  public void setReleaseDatetime(final String releaseDatetime) {
     this.releaseDatetime = releaseDatetime;
+  }
+
+  public long getSeatHoldId() {
+    return this.seatHoldId;
+  }
+
+  public void setSeatHoldId(final long seatHoldId) {
+    this.seatHoldId = seatHoldId;
   }
 
   public boolean isReserved() {

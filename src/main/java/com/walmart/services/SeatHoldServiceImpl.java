@@ -18,15 +18,12 @@ public class SeatHoldServiceImpl implements SeatHoldService {
 
   @Override
   public SeatHold holdSeats(final SeatHold seatHold) {
-    // TODO Auto-generated method stub
-    this.seatHoldRepository.holdSeats(seatHold);
-    return null;
+    return this.seatHoldRepository.holdSeats(seatHold);
   }
 
   @Override
   public String reserveSeats(final int seatHoldId, final String customerEmail) {
-    // TODO Auto-generated method stub
-    return null;
+    return this.seatHoldRepository.reserveSeats(seatHoldId, customerEmail);
   }
 
   @Override

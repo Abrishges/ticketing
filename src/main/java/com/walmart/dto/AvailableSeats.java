@@ -7,7 +7,7 @@ public class AvailableSeats {
   private String eventId;
   private String sectionId;
   private String rowId;
-  private String seatNum;
+  private Integer seatNum;
 
 
   private String aisle;
@@ -23,6 +23,18 @@ public class AvailableSeats {
 
   private String status; // A , I
 
+  public AvailableSeats(
+      final String eventId,
+      final String sectionId,
+      final String rowId,
+      final Integer seatNum,
+      final String status) {
+    this.eventId = eventId;
+    this.sectionId = sectionId;
+    this.rowId = rowId;
+    this.seatNum = seatNum;
+    this.status = status;
+  }
 
   public String getEventId() {
     return this.eventId;
@@ -48,11 +60,11 @@ public class AvailableSeats {
     this.rowId = rowId;
   }
 
-  public String getSeatNum() {
+  public Integer getSeatNum() {
     return this.seatNum;
   }
 
-  public void setSeatNum(final String seatNum) {
+  public void setSeatNum(final Integer seatNum) {
     this.seatNum = seatNum;
   }
 

@@ -13,6 +13,8 @@ public interface AvailableSeatsRepository {
 
   public AvailableSeats editAvailableSeat(AvailableSeats availableSeats);
 
+  public void seatHold(final List<AvailableSeats> bestAvailableSeats);
+
   // return all available seats, seats which are available
   // return best available seats ( this can be moved to service layer of available seats)
   // change reserve status in available seats indicator, reserved or not (flag ) edit
