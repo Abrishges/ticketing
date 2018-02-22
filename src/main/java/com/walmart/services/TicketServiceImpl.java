@@ -38,7 +38,6 @@ public class TicketServiceImpl implements TicketService {
   public SeatHold findAndHoldSeats(final int numSeats, final String customerEmail) {
 
     final List<AvailableSeats> bestAvailableSeats = this.availableSeatsService.findBestAvailableSeats(numSeats);
-    LOG.info("Best available seats: " + bestAvailableSeats);
     final SeatHold seatHold = new SeatHold();
     seatHold.setCustomerEmail(customerEmail);
     seatHold.setAvailableSeats(bestAvailableSeats);
