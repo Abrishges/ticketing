@@ -21,7 +21,21 @@ already sold or reserved seats. Having separate service and table in the data ba
     based on dateTime
 * reserved:
     when the seat is reserved or on hold we can set this flag to true, so that the seat will no longer be available
+    
+  ### best available seats. 
+From a search perspective, Ticket buyers not only want multiple seats, but they want the best ones, as well that means that any “Best Available” search algorithm will be searching the exact same set of seats (section/row) for all concurrent requests.  so we need to develop very efficient algorithm that looks throw the available seats. Seats can be included as part of best available seat based on different criteria. Seller has a few options to play with in order to find the best available seats for the customer. These options can be
+
+ 	  - Price levels or range 
+      - section of the venue
+	  - different ticket types
+      - 	Seats on promotions 
+	  - Best seats with low price
+	  - offer 
+	  - single seats may be left open can also be included as part of the best available 
    
+   * For this project, “Best Available” search algorithm is not implemented. I create simple method that return best available seat based on seat number range. Implementation of Best Available seats search algorithm need requirement.  
+  
+ 
  ### SeatHold: 
 User can select multiple seats and add them to a shopping cart using Best Available, or seat mapping etc. User is also able to remove any the 
 selections from the cart.All seats remain on hold unless seller removes them from the shopping cart or expired release time. User can also select

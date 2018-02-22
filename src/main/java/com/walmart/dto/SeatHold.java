@@ -9,7 +9,6 @@ public class SeatHold {
   private long seatHoldId;
   private List<AvailableSeats> availableSeats;
 
-  // SeatHold
   @NotNull
   private String releaseDatetime; // feature release data time
   private boolean reserved; // If true, no need to check the time

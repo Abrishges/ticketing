@@ -22,7 +22,6 @@ public class Ticket {
   private String addDateTime;
   private String ticketTypeCode;
 
-  // SeatHold
   @NotNull
   private String releaseDatetime;
   private String reservedInd; // If y, no need to check the time
