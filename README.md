@@ -12,13 +12,13 @@ Event Tickets or seats can have one of the following status
   * AVAILABLE, HOLD(temporarily on hold, i.e on the cart), RESERVED (For future purchase) , SOLD
 
    ### Event: 
-Event class facilitate process of keeping event details up-to-date for all available events for sellers and consumer. Seller sale tickets based on event type.Each event have unique event name eventId. 
+Event class facilitate process of keeping event details up-to-date for all available events for sellers and consumer. Seller sale tickets based on event type.Each event have unique event name and eventId. 
 In order to ensure that event information displayed on their various web sites (for event discovery), we need to implement event retrieve and update methods. In data base we can have event 
 table/schema.  We can also tie events with season. For this project event methods are not implemented
     
   ### AvailableSeats:
 AvailableSeats class provides seat availability information so that we can serve more relevant results. It contains all the available seats for that event.
-EventId, sectionId, rowId, seatNum uniquely identify each available seat. Seat availability services or API calls will provided availability information 
+EventId, sectionId, rowId, and seatNum uniquely identify each available seat. Seat availability services or API calls will provided availability information 
 to the caller. The availability of the seats on seller web site seat mapping can also be updated frequently to ensure seller doesn't select seats that are
 already sold or reserved seats. Having separate service and table in the data base will make availability discovery simple. 
 
@@ -26,8 +26,7 @@ already sold or reserved seats. Having separate service and table in the data ba
 * status: 
     Seller have controller to seats. He/she can make seats active to sell or inactive not to sell a specific seat for any reason
 * priceCode: 
-    Seller can configure prices codes based on their best practice.  we can think of price code as like sections. each section might have different price code. some clients change price code dynamically. a week before event, two day before event, one day before event. they adjust it
-    based on dateTime
+    Seller can configure prices codes based on their best practice.  we can think of price code as like sections. Each section might have different price code. Sellers can change price code dynamically a week before event, two day before event, one day before event. They can adjust it based on demand. 
 * reserved:
     when the seat is reserved or on hold we set this flag to true, so that the seat will no longer be available
     
@@ -50,16 +49,16 @@ seat based on different criteria. Seller has a few options to play with in order
  
  ### SeatHold: 
 User can select multiple seats and add them to a shopping cart using Best Available, or seat mapping etc. User also able to remove any the 
-selections from the cart.All seats remain on hold unless seller removes them from the shopping cart or expired release time. User can also select
+selections from the cart. All seats remain on hold unless seller removes them from the shopping cart or expired release time. User can also select
 best available seats and reserve it and it remain as reserved unless seller or buyer removes them.
 Important fields 
  
    Additional important fields 
   * releaseDatetime: 
-        to hold seats on the cart for certain for 3 mints. Seller can configure this value 
+        To hold seats on the cart for 3 mints. Seller can configure this value 
   *  reserved:
         when true, the seat is reserved for customer. It will stay on reserved state unless seller or buyer removes it regardless of releaseDatetime. 
-  -  seatHold object contains seat information and customer information. 
+  - seatHold object contains seat information and customer information. 
   - Seats can be returned from hold to Available Seats if reserved `indicator` is `false` and `releaseDatetime` is expired. 
   
  ### Ticket  
@@ -67,9 +66,10 @@ When a ticket is sold, it will be removed from AvailableSeats and SeatHold and i
 can requests inventory data on the sold seats for that event. The data from this ticketing service will be used to check sold tickets, inventory, 
 reporting, seller website seat mapping update etc. So putting sold tickets in separate class or table or dto helps for separation of concerns and it makes things
 simple. 
+ - Ticket object contains seat information and customer information. 
 
  ### TicketServiceImp class
-TicketServiceImpl class implementation methods for the given home work. The methods in this class calls other service classes like available seats and 
+TicketServiceImpl class contains implementation methods for the given home work. The methods in this class calls other service classes like available seats and 
 seats hold. Best available seats search method implementation is also under `AvailableSeatsServiceImpl` which is called by `findAndHoldSeats` method in
 TicketServiceImpl class during seat hold. I also create dummy available seats in `AvailableSeatsRepositoryImpl` class that will populate five available seats when
 the application start
@@ -98,7 +98,7 @@ This is a unit test for TicketServiceImp class. Junit mockito is used for unit t
 
   `mvn test`
   
-  From eclipse, you can right click and run unit test
+  From eclipse, you can right click and run unit test. It should show green bar
   
 #### To test calls , for simplicity use swagger page in your favorite browser. curl commands are also provided below. 
 * URL
