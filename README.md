@@ -4,6 +4,8 @@ __contact__: Abereham.wodajie@gmail.com
 # Assumptions
 
 # Design Explanations
+   Event Tickets or seats can have one of the following states 
+      AVAILABLE, HOLD(temporarily on hold, i.e on the cart), RESERVED (For future purchase) , SOLD
 
    ### Event: 
 Facilitate process of keeping event details up-to-date for all available events for sellers and consumer. Seller sale tickets based on event type.      Each event have unique event name eventId. In order to ensure that event information displayed on their various web sites (for event discovery), we need to implement event retrieve and update methods. In data base we can have event table/schema.  We can also tie events with season. For this project event methods are not implemented
@@ -22,13 +24,13 @@ already sold or reserved seats. Having separate service and table in the data ba
 * reserved:
     when the seat is reserved or on hold we can set this flag to true, so that the seat will no longer be available
     
-  ### best available seats. 
+  ### Best available seats. 
 From a search perspective, Ticket buyers not only want multiple seats, but they want the best ones, as well that means that any “Best Available” search algorithm will be searching the exact same set of seats (section/row) for all concurrent requests.  so we need to develop very efficient algorithm that looks throw the available seats. Seats can be included as part of best available seat based on different criteria. Seller has a few options to play with in order to find the best available seats for the customer. These options can be
 
  	  - Price levels or range 
       - section of the venue
 	  - different ticket types
-      - 	Seats on promotions 
+      - Seats on promotions 
 	  - Best seats with low price
 	  - offer 
 	  - single seats may be left open can also be included as part of the best available 
@@ -57,6 +59,15 @@ simple.
 
 * This project is based on maven with spring boot version 1.5
 
+ ### TicketServiceImp implementation 
+     TicketServiceImpl class conatins implementation methods for the home work. This methods call other service classes like available seats and 
+     seats hold. Simple Best available method implementation is also under AvailableSeatsServiceImpl which be called by findAndHoldSeats method in
+     TicketServiceImpl. I also create dumy available seats in AvailableSeatsRepositoryImpl class that will populate five available seats when
+     the application start
+     
+ ### TicketServiceImpTest 
+      Unit test for TicketServiceImp class. Junit mockito is used to for unit test and check in eclipse using code coverage plugin. 
+
 ## Prerequisite
 
 * Maven
@@ -71,15 +82,49 @@ simple.
 
   `mvn spring-boot:run`
 
-#### To test calls , use swagger page in your favorite browser 
+#### To test calls , for simplicity use swagger page in your favorite browser. curl commands are also provided below. 
 * URL
     * http://localhost:8080/swagger-ui.html#/
     
 * ticketing service urls. 
      * http://localhost:8080/swagger-ui.html#/
           
-* using curl to extract information
+
 
 #RESTful Web Services
+    we can use swagger page curl commands to test the code 
+   ![](/doc/swagger/ticketing_controller.png) 
+  #### Available Seats
+  * URL
+      * http://localhost:8080/tickets/availableSeats
+  ![](/doc/swagger/available_seats.png) 
+
+   * using curl to extract available seat information
+     ```curl -X GET "http://localhost:8080/tickets/availableSeats" -H "accept: */*"```
+   
+  #### number of available Seats
+  * URL
+     * http://localhost:8080/tickets/numOfSeats
+      ![](/doc/swagger/numOfSeats.png)
+      
+     * using curl to extract number of available seat information 
+       ```curl -X GET "http://localhost:8080/tickets/numOfSeats" -H "accept: */*"```
   
-  ![](/doc/swagger/release-pipeline.png) 
+  #### hold best available Seats
+  * URL
+     * http://localhost:8080/tickets/holdBestAvailableSeats
+      ![](/doc/swagger/holdBestAvailableSeats.png)
+      
+     * using curl to extract number of available seat information 
+       ```curl -X GET "http://localhost:8080/tickets/holdBestAvailableSeats?numSeats=2&customerEmail=Abereham.wodajie%40gmail.com" -H "accept: */*"```
+       
+ ### reserve best available Seats
+ URL
+     * http://localhost:8080/tickets/reserveSeats
+       ![](/doc/swagger/reserveSeats.png)
+         
+   * using curl to extract number of available seat information 
+   ```curl -X GET "http://localhost:8080/tickets/reserveSeats?seatHoldId=1519345131&customerEmail=Abereham.wodajie%40gmail.com" -H "accept: */*"```
+           
+          
+     

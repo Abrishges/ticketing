@@ -31,19 +31,20 @@ public class AvailableSeatsServiceImpl implements AvailableSeatsService {
     return currentAvailableSeats;
   }
 
+  /*
+   * Seller can develop best available algorithm based on
+   * - Price levels or range
+   * - sections of the Venue,
+   * - different ticket types
+   * - Seats on promotions
+   * - Best seats with low price
+   * - mostly seats at the middle with consumer specified range are best available seats
+   */
   @Override
   public List<AvailableSeats> findBestAvailableSeats(final int numSeats) {
     final List<AvailableSeats> availableSeats = this.findAllAvailableSeats();
     // availableSeats are filtered using best algorithm to find Best available seats
-    /*
-     *
-     * - Price levels or range (
-     * - sections of the Venue,
-     * - different ticket types
-     * - Seats on promotions
-     * - Best seats with low price
-     * - mostly seats at the middle with consumer specified range are best available seats
-     */
+
     // For this home work seats b/n seat number 20 to 40 are considered as best seats
     final List<AvailableSeats> bestAvailableSeats = availableSeats
         .stream()
