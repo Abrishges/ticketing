@@ -4,7 +4,7 @@ __contact__: Abereham.wodajie@gmail.com
 ### Assumptions
    * Hold time for the seats is  3 minutes. Seller can configure this value.  If the user doesn't reserve the seats before 3 minutes, then the holds are removed and user has to send
     a request again to hold the seats.
-   * Expired Seat Holds can be release by a frequent call from a service or Data base event or Trigger that runs timely. I believe the most efficient way to run a database event or Trigger
+   * Expired Seat Holds can be release by a frequent call from a service or Data base event or Trigger that runs timely. I believe the most efficient way is to run a database event or Trigger
        that run timely. For this home work I create scheduled method that will run every 60 second. The method is inside `SeatHoldServiceImpl` class, `releaseSeats` method
 
 ### Design Explanations
