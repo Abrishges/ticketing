@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.walmart.dto.AvailableSeats;
 import com.walmart.dto.SeatHold;
+import com.walmart.util.EmailValidator;
 
 @Service
 public class TicketServiceImpl implements TicketService {
@@ -18,13 +19,18 @@ public class TicketServiceImpl implements TicketService {
   private static final Logger LOG = LoggerFactory.getLogger(TicketServiceImpl.class);
   private final AvailableSeatsService availableSeatsService;
   private final SeatHoldService seatHoldService;
+  private final EmailValidator emailValidator;
 
   private final int SEAT_RELEASE_TIME = 3;
 
   @Autowired
-  public TicketServiceImpl(final AvailableSeatsService availableSeatsService, final SeatHoldService seatHoldService) {
+  public TicketServiceImpl(
+      final AvailableSeatsService availableSeatsService,
+      final SeatHoldService seatHoldService,
+      final EmailValidator emailValidator) {
     this.availableSeatsService = availableSeatsService;
     this.seatHoldService = seatHoldService;
+    this.emailValidator = emailValidator;
   }
 
   // In perfect design we need to pass eventId, and return number of available seats for that event
@@ -36,6 +42,10 @@ public class TicketServiceImpl implements TicketService {
 
   @Override
   public SeatHold findAndHoldSeats(final int numSeats, final String customerEmail) {
+
+    if (!this.emailValidator.isValidEmailAddress(customerEmail)) {
+      throw new IllegalArgumentException("The customer Email not valid");
+    }
 
     final List<AvailableSeats> bestAvailableSeats = this.availableSeatsService.findBestAvailableSeats(numSeats);
     final SeatHold seatHold = new SeatHold();
@@ -52,6 +62,9 @@ public class TicketServiceImpl implements TicketService {
 
   @Override
   public String reserveSeats(final int seatHoldId, final String customerEmail) {
+    if (!this.emailValidator.isValidEmailAddress(customerEmail)) {
+      throw new IllegalArgumentException("The customer Email not valid");
+    }
     return this.seatHoldService.reserveSeats(seatHoldId, customerEmail);
   }
 
