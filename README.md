@@ -73,6 +73,7 @@ TicketServiceImpl class contains implementation methods for the given home work.
 seats hold. Best available seats search method implementation is also under `AvailableSeatsServiceImpl` which is called by `findAndHoldSeats` method in
 TicketServiceImpl class during seat hold. I also create dummy available seats in `AvailableSeatsRepositoryImpl` class that will populate five available seats when
 the application start
+https://github.com/Abrishges/ticketing/blob/master/src/main/java/com/walmart/services/TicketServiceImpl.java
      
  ### TicketServiceImpTest class
 This is a unit test for TicketServiceImp class. Junit mockito is used for unit test and checked in eclipse using code coverage plugin. 
