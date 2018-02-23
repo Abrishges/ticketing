@@ -8,7 +8,7 @@ __contact__: Abereham.wodajie@gmail.com
        that run timely. 
 
 ### Design Explanations
-   Event Tickets or seats can have one of the following states 
+Event Tickets or seats can have one of the following states 
   * AVAILABLE, HOLD(temporarily on hold, i.e on the cart), RESERVED (For future purchase) , SOLD
 
    ### Event: 
@@ -100,7 +100,7 @@ Unit test for TicketServiceImp class. Junit mockito is used to for unit test and
           
 
 
-### RESTful Web Services
+### Test using RESTful Web Services
   we can use swagger page or curl commands to test the code. curl commands are also provided
       ![](/doc/swagger/ticketing_controller.png) 
    
