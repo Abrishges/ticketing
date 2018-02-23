@@ -27,7 +27,7 @@ public class TicketServiceImpl implements TicketService {
     this.seatHoldService = seatHoldService;
   }
 
-  // In perfect design we need to pass eventId
+  // In perfect design we need to pass eventId, and return number of available seats for that event
   @Override
   public int numSeatsAvailable() {
     final List<AvailableSeats> availableSeats = this.availableSeatsService.findAllAvailableSeats();
@@ -38,7 +38,6 @@ public class TicketServiceImpl implements TicketService {
   public SeatHold findAndHoldSeats(final int numSeats, final String customerEmail) {
 
     final List<AvailableSeats> bestAvailableSeats = this.availableSeatsService.findBestAvailableSeats(numSeats);
-    LOG.info("Best available seats: " + bestAvailableSeats);
     final SeatHold seatHold = new SeatHold();
     seatHold.setCustomerEmail(customerEmail);
     seatHold.setAvailableSeats(bestAvailableSeats);
@@ -64,7 +63,7 @@ public class TicketServiceImpl implements TicketService {
     // Get time after 3 minutes
     final Duration duration = Duration.ofMinutes(this.SEAT_RELEASE_TIME);
     final LocalDateTime newTime = LocalDateTime.now().plus(duration);
-
+    LOG.info("seatHoldId: [{}]", newTime);
     return newTime;
   }
 }

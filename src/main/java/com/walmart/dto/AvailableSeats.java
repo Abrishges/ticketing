@@ -2,13 +2,18 @@ package com.walmart.dto;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.NotNull;
+
 public class AvailableSeats {
 
+  @NotNull
   private String eventId;
+  @NotNull
   private String sectionId;
+  @NotNull
   private String rowId;
+  @NotNull
   private Integer seatNum;
-
 
   private String aisle;
   private String discountCode;
@@ -20,8 +25,12 @@ public class AvailableSeats {
   private String updateUser;
   private String updateDateTime;
   private String sellLocation;
+  private String priceCode;
 
-  private String status; // A , I
+  // A , I (seller can also make seats active to sell or inactive not to sell
+  // specific seat for any reason )
+  @NotNull
+  private String status;
 
   public AvailableSeats(
       final String eventId,
@@ -138,6 +147,14 @@ public class AvailableSeats {
 
   public void setSellLocation(final String sellLocation) {
     this.sellLocation = sellLocation;
+  }
+
+  public String getPriceCode() {
+    return this.priceCode;
+  }
+
+  public void setPriceCode(final String priceCode) {
+    this.priceCode = priceCode;
   }
 
   public String getStatus() {

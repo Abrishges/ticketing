@@ -26,7 +26,7 @@ public class TicketingController {
   private final SeatHoldService seatHoldService;
 
   public static final String BASE_PATH = "/tickets";
-  public static final String ID_PATH_NUM_SEATS = "/numofseats";
+  public static final String ID_PATH_NUM_SEATS = "/numOfSeats";
   public static final String ID_PATH_AVAIL_SEATS = "/availableSeats";
   public static final String HOLD_BEST_AVAIL_SEATS = "/holdBestAvailableSeats";
   public static final String RESERVE_SEATS = "/reserveSeats";

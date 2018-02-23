@@ -2,16 +2,20 @@ package com.walmart.dto;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 public class SeatHold {
+
   private long seatHoldId;
   private List<AvailableSeats> availableSeats;
 
-  // SeatHold
+  @NotNull
   private String releaseDatetime; // feature release data time
   private boolean reserved; // If true, no need to check the time
   private String promoCode;
 
   private String customerId;
+  @NotNull
   private String customerEmail;
   private String orderNumber;
   private String dateTime;

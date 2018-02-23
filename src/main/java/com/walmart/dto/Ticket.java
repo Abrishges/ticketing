@@ -2,10 +2,16 @@ package com.walmart.dto;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.NotNull;
+
 public class Ticket {
+  @NotNull
   private String eventId;
+  @NotNull
   private String sectionId;
+  @NotNull
   private String rowId;
+  @NotNull
   private String seatNumber;
 
   private String priceCode;
@@ -16,12 +22,14 @@ public class Ticket {
   private String addDateTime;
   private String ticketTypeCode;
 
-  // SeatHold
+  @NotNull
   private String releaseDatetime;
   private String reservedInd; // If y, no need to check the time
 
   private String customerId;
+  @NotNull
   private String customerEmail;
+  @NotNull
   private String orderNumber;
 
   public String getEventId() {
