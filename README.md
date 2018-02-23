@@ -76,6 +76,7 @@ the application start
      
  ### TicketServiceImpTest class
 This is a unit test for TicketServiceImp class. Junit mockito is used for unit test and checked in eclipse using code coverage plugin. 
+  https://github.com/Abrishges/ticketing/blob/master/src/test/java/com/walmart/services/TicketServiceImplTest.java
   Use `mvn test` to run the test
 
 ## Prerequisite
