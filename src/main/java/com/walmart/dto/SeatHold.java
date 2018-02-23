@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 
 public class SeatHold {
 
-  private long seatHoldId;
+  private int seatHoldId;
   private List<AvailableSeats> availableSeats;
 
   @NotNull
@@ -36,11 +36,11 @@ public class SeatHold {
     this.releaseDatetime = releaseDatetime;
   }
 
-  public long getSeatHoldId() {
+  public int getSeatHoldId() {
     return this.seatHoldId;
   }
 
-  public void setSeatHoldId(final long seatHoldId) {
+  public void setSeatHoldId(final int seatHoldId) {
     this.seatHoldId = seatHoldId;
   }
 

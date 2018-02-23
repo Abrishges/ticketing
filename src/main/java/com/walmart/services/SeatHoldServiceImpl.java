@@ -1,8 +1,13 @@
 package com.walmart.services;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import com.walmart.dao.AvailableSeatsRepository;
 import com.walmart.dao.SeatHoldRepository;
 import com.walmart.dto.SeatHold;
 
@@ -10,10 +15,14 @@ import com.walmart.dto.SeatHold;
 public class SeatHoldServiceImpl implements SeatHoldService {
 
   private final SeatHoldRepository seatHoldRepository;
+  private final AvailableSeatsRepository availableSeatsRepository;
 
   @Autowired
-  public SeatHoldServiceImpl(final SeatHoldRepository seatHoldRepository) {
+  public SeatHoldServiceImpl(
+      final SeatHoldRepository seatHoldRepository,
+      final AvailableSeatsRepository availableSeatsRepository) {
     this.seatHoldRepository = seatHoldRepository;
+    this.availableSeatsRepository = availableSeatsRepository;
   }
 
   @Override
@@ -30,5 +39,17 @@ public class SeatHoldServiceImpl implements SeatHoldService {
   public String deletedHeldSeat(final int seatHoldId) {
     // TODO Auto-generated method stub
     return null;
+  }
+
+  // change reserve status in available seats indicator, reserved or not (flag ) edit
+  @Scheduled(fixedRate = 60000)
+  public void releaseSeats() {
+    final List<SeatHold> seatHold = this.seatHoldRepository.getAllHoldSeats();
+    seatHold.stream().forEach(seat -> {
+      if (LocalDateTime.parse(seat.getReleaseDatetime()).isBefore(LocalDateTime.now()) && !seat.isReserved()) {
+        this.seatHoldRepository.deletedHeldSeat(seat.getSeatHoldId());
+        this.availableSeatsRepository.editAvailableSeat(seat.getAvailableSeats());
+      }
+    });
   }
 }
