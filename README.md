@@ -2,13 +2,19 @@
 __contact__: Abereham.wodajie@gmail.com
 
 # Assumptions
+   * Hold time for the seats is  3 minutes. Seller can configure this value.  If the user doesn't reserve the seats before 3 minutes, then the holds are removed and user has to send
+    a request again to hold the seats.
+   * Expired Seat Holds can be release by a frequent call from a service or Data base event or Trigger that runs timely. I believe the most efficient is a database event or Trigger
+       that run timely. 
 
 # Design Explanations
    Event Tickets or seats can have one of the following states 
       AVAILABLE, HOLD(temporarily on hold, i.e on the cart), RESERVED (For future purchase) , SOLD
 
    ### Event: 
-Facilitate process of keeping event details up-to-date for all available events for sellers and consumer. Seller sale tickets based on event type.      Each event have unique event name eventId. In order to ensure that event information displayed on their various web sites (for event discovery), we need to implement event retrieve and update methods. In data base we can have event table/schema.  We can also tie events with season. For this project event methods are not implemented
+Facilitate process of keeping event details up-to-date for all available events for sellers and consumer. Seller sale tickets based on event type.Each event have unique event name eventId. 
+In order to ensure that event information displayed on their various web sites (for event discovery), we need to implement event retrieve and update methods. In data base we can have event 
+table/schema.  We can also tie events with season. For this project event methods are not implemented
     
   ### AvailableSeats:
 AvailableSeats provides seat availability information so that we can serve more relevant results. It contains all the available seats for that event.
@@ -24,8 +30,10 @@ already sold or reserved seats. Having separate service and table in the data ba
 * reserved:
     when the seat is reserved or on hold we can set this flag to true, so that the seat will no longer be available
     
-  ### Best available seats. 
-From a search perspective, Ticket buyers not only want multiple seats, but they want the best ones, as well that means that any “Best Available” search algorithm will be searching the exact same set of seats (section/row) for all concurrent requests.  so we need to develop very efficient algorithm that looks throw the available seats. Seats can be included as part of best available seat based on different criteria. Seller has a few options to play with in order to find the best available seats for the customer. These options can be
+ ### Best available seats. 
+From a search perspective, Ticket buyers not only want multiple seats, but they want the best ones, as well that means that any “Best Available” search algorithm will be searching the exact 
+same set of seats (section/row) for all concurrent requests.  so we need to develop very efficient algorithm that looks throw the available seats. Seats can be included as part of best available 
+seat based on different criteria. Seller has a few options to play with in order to find the best available seats for the customer. These options can be
 
  	  - Price levels or range 
       - section of the venue
@@ -35,7 +43,8 @@ From a search perspective, Ticket buyers not only want multiple seats, but they 
 	  - offer 
 	  - single seats may be left open can also be included as part of the best available 
    
-   * For this project, “Best Available” search algorithm is not implemented. I create simple method that return best available seat based on seat number range. Implementation of Best Available seats search algorithm need requirement.  
+   * For this project, “Best Available” search algorithm is not implemented. I create simple method that return best available seat based on seat number range. Implementation of Best Available 
+     seats search algorithm need requirement.  
   
  
  ### SeatHold: 
@@ -66,7 +75,7 @@ TicketServiceImpl. I also create dumy available seats in AvailableSeatsRepositor
 the application start
      
  ### TicketServiceImpTest class
-Unit test for TicketServiceImp class. Junit mockito is used to for unit test and check in eclipse using code coverage plugin. 
+Unit test for TicketServiceImp class. Junit mockito is used to for unit test and checked in eclipse using code coverage plugin. 
 
 ## Prerequisite
 
@@ -93,7 +102,7 @@ Unit test for TicketServiceImp class. Junit mockito is used to for unit test and
 
 ### RESTful Web Services
   we can use swagger page or curl commands to test the code. curl commands are also provided
-   ![](/doc/swagger/ticketing_controller.png) 
+      ![](/doc/swagger/ticketing_controller.png) 
    
 #### Available Seats
   * URL
@@ -127,7 +136,7 @@ Unit test for TicketServiceImp class. Junit mockito is used to for unit test and
      * http://localhost:8080/tickets/reserveSeats
        ![](/doc/swagger/reserveSeats.png)
          
-   * using curl to extract number of available seat information 
+   * using curl to reserve best available Seats
    
    ```curl -X GET "http://localhost:8080/tickets/reserveSeats?seatHoldId=1519345131&customerEmail=Abereham.wodajie%40gmail.com" -H "accept: */*"```
            
