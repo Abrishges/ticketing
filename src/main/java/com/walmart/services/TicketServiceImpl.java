@@ -43,10 +43,9 @@ public class TicketServiceImpl implements TicketService {
     seatHold.setAvailableSeats(bestAvailableSeats);
     seatHold.setReleaseDatetime(this.getNewTime().toString());
 
-    // we should call seats hold repository with seatsHold object and it should return seats hold
-    // object
+    // Populate seats hold object
     final SeatHold seatHoldRespose = this.seatHoldService.holdSeats(seatHold);
-    // we should also change the status of the seats to reserved to true
+    // we should also change the status of the seats reserved to true
     this.availableSeatsService.seatHold(bestAvailableSeats);
     return seatHoldRespose;
   }
@@ -54,11 +53,9 @@ public class TicketServiceImpl implements TicketService {
   @Override
   public String reserveSeats(final int seatHoldId, final String customerEmail) {
     return this.seatHoldService.reserveSeats(seatHoldId, customerEmail);
-    // we need to update from available seats as well ( we need to remove it from available sets,
-    // even if it is false)
   }
 
-  // Release date time
+  // create release date time, this method can be moved to a separate class
   public LocalDateTime getNewTime() {
     // Get time after 3 minutes
     final Duration duration = Duration.ofMinutes(this.SEAT_RELEASE_TIME);

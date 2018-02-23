@@ -5,7 +5,7 @@ __contact__: Abereham.wodajie@gmail.com
    * Hold time for the seats is  3 minutes. Seller can configure this value.  If the user doesn't reserve the seats before 3 minutes, then the holds are removed and user has to send
     a request again to hold the seats.
    * Expired Seat Holds can be release by a frequent call from a service or Data base event or Trigger that runs timely. I believe the most efficient is a database event or Trigger
-       that run timely. 
+       that run timely. For this home work I create scheduled method that will run every 60 second. The method is inside `SeatHoldServiceImpl` class, `releaseSeats` method
 
 ### Design Explanations
 Event Tickets or seats can have one of the following states 
@@ -91,6 +91,12 @@ Unit test for TicketServiceImp class. Junit mockito is used to for unit test and
 
   `mvn spring-boot:run`
 
+#### To run unit tests, Navigate to project directory, ticketing  using terminal or cmd, and use the following cmd
+
+  `mvn test`
+  
+  From eclipse, you can right click and run unit test
+  
 #### To test calls , for simplicity use swagger page in your favorite browser. curl commands are also provided below. 
 * URL
     * http://localhost:8080/swagger-ui.html#/

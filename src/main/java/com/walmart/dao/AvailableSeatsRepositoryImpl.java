@@ -32,15 +32,15 @@ public class AvailableSeatsRepositoryImpl implements AvailableSeatsRepository {
   }
 
   @Override
-  public void reserveSeats(final List<AvailableSeats> availableSeats) {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
   public AvailableSeats editAvailableSeat(final AvailableSeats availableSeats) {
     // TODO Auto-generated method stub
     return null;
+  }
+
+  @Override
+  public void editAvailableSeat(final List<AvailableSeats> availableSeats) {
+    // This method can be used to change flag of reserved
+    // change reserve status in available seats indicator, reserved flag will be changed to false
   }
 
   @Override
