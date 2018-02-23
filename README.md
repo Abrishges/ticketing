@@ -59,14 +59,14 @@ simple.
 
 * This project is based on maven with spring boot version 1.5
 
- ### TicketServiceImp implementation 
-     TicketServiceImpl class conatins implementation methods for the home work. This methods call other service classes like available seats and 
-     seats hold. Simple Best available method implementation is also under AvailableSeatsServiceImpl which be called by findAndHoldSeats method in
-     TicketServiceImpl. I also create dumy available seats in AvailableSeatsRepositoryImpl class that will populate five available seats when
-     the application start
+ ### TicketServiceImp class
+TicketServiceImpl class conatins implementation methods for the home work. This methods call other service classes like available seats and 
+seats hold. Simple Best available method implementation is also under AvailableSeatsServiceImpl which be called by findAndHoldSeats method in
+TicketServiceImpl. I also create dumy available seats in AvailableSeatsRepositoryImpl class that will populate five available seats when
+the application start
      
- ### TicketServiceImpTest 
-      Unit test for TicketServiceImp class. Junit mockito is used to for unit test and check in eclipse using code coverage plugin. 
+ ### TicketServiceImpTest class
+Unit test for TicketServiceImp class. Junit mockito is used to for unit test and check in eclipse using code coverage plugin. 
 
 ## Prerequisite
 
@@ -91,39 +91,44 @@ simple.
           
 
 
-#RESTful Web Services
-    we can use swagger page curl commands to test the code 
+### RESTful Web Services
+  we can use swagger page or curl commands to test the code. curl commands are also provided
    ![](/doc/swagger/ticketing_controller.png) 
-  #### Available Seats
+   
+#### Available Seats
   * URL
       * http://localhost:8080/tickets/availableSeats
   ![](/doc/swagger/available_seats.png) 
 
-   * using curl to extract available seat information
+  * using curl to extract available seat information
+  
      ```curl -X GET "http://localhost:8080/tickets/availableSeats" -H "accept: */*"```
    
-  #### number of available Seats
+#### Number of available Seats
   * URL
      * http://localhost:8080/tickets/numOfSeats
       ![](/doc/swagger/numOfSeats.png)
       
      * using curl to extract number of available seat information 
+     
        ```curl -X GET "http://localhost:8080/tickets/numOfSeats" -H "accept: */*"```
   
-  #### hold best available Seats
+#### Hold best available Seats
   * URL
      * http://localhost:8080/tickets/holdBestAvailableSeats
       ![](/doc/swagger/holdBestAvailableSeats.png)
       
-     * using curl to extract number of available seat information 
+     * using curl to hold best available Seats
+     
        ```curl -X GET "http://localhost:8080/tickets/holdBestAvailableSeats?numSeats=2&customerEmail=Abereham.wodajie%40gmail.com" -H "accept: */*"```
        
- ### reserve best available Seats
- URL
+ ### Reserve best available Seats
+ * URL
      * http://localhost:8080/tickets/reserveSeats
        ![](/doc/swagger/reserveSeats.png)
          
    * using curl to extract number of available seat information 
+   
    ```curl -X GET "http://localhost:8080/tickets/reserveSeats?seatHoldId=1519345131&customerEmail=Abereham.wodajie%40gmail.com" -H "accept: */*"```
            
           
