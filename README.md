@@ -1,13 +1,13 @@
 # Ticketing Service
 __contact__: Abereham.wodajie@gmail.com
 
-# Assumptions
+### Assumptions
    * Hold time for the seats is  3 minutes. Seller can configure this value.  If the user doesn't reserve the seats before 3 minutes, then the holds are removed and user has to send
     a request again to hold the seats.
    * Expired Seat Holds can be release by a frequent call from a service or Data base event or Trigger that runs timely. I believe the most efficient is a database event or Trigger
        that run timely. 
 
-# Design Explanations
+### Design Explanations
    Event Tickets or seats can have one of the following states 
       AVAILABLE, HOLD(temporarily on hold, i.e on the cart), RESERVED (For future purchase) , SOLD
 
