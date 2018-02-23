@@ -9,7 +9,7 @@ __contact__: Abereham.wodajie@gmail.com
 
 ### Design Explanations
    Event Tickets or seats can have one of the following states 
-      AVAILABLE, HOLD(temporarily on hold, i.e on the cart), RESERVED (For future purchase) , SOLD
+  * AVAILABLE, HOLD(temporarily on hold, i.e on the cart), RESERVED (For future purchase) , SOLD
 
    ### Event: 
 Facilitate process of keeping event details up-to-date for all available events for sellers and consumer. Seller sale tickets based on event type.Each event have unique event name eventId. 
